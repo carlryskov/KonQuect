@@ -1,11 +1,15 @@
 require('dotenv').config();
 
+//Declare server reqirements
 const express = require('express') 
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
 
+//Declare routers
 const indexRouter = require('./routes/index')
+const assmanRouter = require('./routes/assman')
 
+//Set up app with 'use' functionalities
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
@@ -13,7 +17,7 @@ app.use(expressLayouts)
 app.use(express.static('public'))
 
 
-
+//Connect with dotenv 
 const mongoDB = process.env.DATABASE_URL;
 
 
@@ -53,9 +57,10 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 */
 
 
-
+//Use routers
 app.use('/', indexRouter)
+app.use('/assman', assmanRouter)
 
+
+//Have app listen at port 3000 for development purposes
 app.listen(process.env.PORT || 3000)
-
-
