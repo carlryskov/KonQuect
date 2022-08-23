@@ -8,6 +8,10 @@ const expressLayouts = require('express-ejs-layouts')
 //Declare routers
 const indexRouter = require('./routes/index')
 const assmanRouter = require('./routes/assman')
+const contactRouter = require('./routes/contact')
+const cryptoWalletRouter = require('./routes/cryptoWallet')
+
+
 
 //Set up app with 'use' functionalities
 app.set('view engine', 'ejs')
@@ -60,6 +64,8 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 //Use routers
 app.use('/', indexRouter)
 app.use('/assman', assmanRouter)
+app.use('/contact', contactRouter)
+app.use('/cryptoWallet', cryptoWalletRouter)
 
 
 //Have app listen at port 3000 for development purposes
